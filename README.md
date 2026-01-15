@@ -32,7 +32,7 @@ We strongly recommend that you start working on labs **early** — it always tak
 
 ### FPGA board 
 
-The labs in this course are designed to be completed using a DE1-SoC FPGA board. For quick testing of your designs (and convenience) you can use the virtual DE1 environment that allows you to check, simulate, and debug without a physical DE1 SoC board.
+The labs in this course are designed to be completed using a DE1-SoC or DE10 Lite or DE0-CV (discontinued) FPGA board. For quick testing of your designs (and convenience) you can use the virtual DE1 environment that allows you to check, simulate, and debug without a physical DE1 SoC board.
 
 Read the [Virtual DE1-SoC](de1-gui/README.md) document to learn how to simulate and debug your code without a physical FPGA.
 
