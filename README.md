@@ -217,7 +217,7 @@ Before trying to finish the Verilog hardware, start by writing unit tests for al
 
 Be sure to exhaustively test **both** the SystemVerilog RTL code you write and the post-synthesis netlist Verilog file produced by Quartus (see the Tutorial).
 
-The hardest part of this lab is getting the state machine right. We strongly urge you to draw (on paper) a bubble diagram showing the states, the transitions, and outputs of each transition. You are strongly urged to make sure you have your state machine bubble diagram done by Monday. If you are unclear how to do this, be sure to discuss with your TA during the lab period. When drawing your diagram for your state machine, make sure that you cover all of the possible input conditions.
+The hardest part of this lab is getting the state machine right. We strongly urge you to draw (on paper) a bubble diagram showing the states, the transitions, and outputs of each transition. You are strongly urged to make sure you have your state machine bubble diagram done before writing the SystemVerilog code for it. If you are unclear how to do this, be sure to discuss with your TA during the lab period. When drawing your diagram for your state machine, make sure that you cover all of the possible input conditions.
 
 ### Post-synthesis simulation
 
