@@ -221,7 +221,7 @@ The hardest part of this lab is getting the state machine right. We strongly urg
 
 ### Post-synthesis simulation
 
-Be sure to exhaustively test both the SystemVerilog RTL code you write and the post-synthesis netlist Verilog file produced by Quartus (see the Tutorial). It is entirely possible to write “unsynthesizable” RTL that works “in simulation” but either fails to synthesize or synthesizes into something that behaves differently. Optionally, you may include the post-synthesis netlist (.vo file) you generated from Quartus. We will not use it for marking, but it can provide evidence in the unlikely event that you need to appeal your marks.
+Be sure to exhaustively test both the SystemVerilog RTL code you write and the post-synthesis netlist Verilog file produced by Quartus (see the Tutorial). It is entirely possible to write “unsynthesizable” RTL that works “in simulation” but either fails to synthesize or synthesizes into something that behaves differently. Optionally, you may include in your submission the post-synthesis netlist (.vo file) you generated from Quartus. We will not use it for marking, but it can provide evidence in the unlikely event that you need to appeal your marks.
 
 ### Task 6: Verify your design on a DE1-SoC board
 
