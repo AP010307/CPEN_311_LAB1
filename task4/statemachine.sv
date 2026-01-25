@@ -9,5 +9,6 @@ module statemachine(input logic slow_clock, input logic resetb,
 // registers that hold the state.  You will want to review your notes from
 // CPEN 211 or equivalent if you have forgotten how to write a state machine.
 
+assign load_pcard1 = 1;
 endmodule
 
