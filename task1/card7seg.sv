@@ -3,7 +3,7 @@ module card7seg( input  logic [3:0] SW, output logic [6:0] HEX0);
     // Active-low 7-seg patterns (a..g order depends on your board)
     typedef enum logic [6:0] {
         BLANK = 7'b1111111,
-        TEN  = 7'b1000000,
+        TEN  =  7'b1000000,
         ACE   = 7'b0001000,
         TWO   = 7'b0100100,
         THREE = 7'b0110000,
