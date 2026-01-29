@@ -1,3 +1,5 @@
+`timescale 1ps/1ps
+
 module tb_task4();
 
 // Your testbench goes here. Make sure your tests exercise the entire design
