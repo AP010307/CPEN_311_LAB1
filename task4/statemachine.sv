@@ -44,41 +44,43 @@ always_comb begin
     // Next state logic
     unique case (state)
         S0_IDLE: begin
+            load_pcard1 = 1;
             next_state = S1_DEAL_P1;
         end
         S1_DEAL_P1: begin
-            load_pcard1 = 1;
+            load_dcard1 = 1;
             next_state = S2_DEAL_D1;
         end
         S2_DEAL_D1: begin
-            load_dcard1 = 1;
+            load_pcard2 = 1;
             next_state = S3_DEAL_P2;
         end
         S3_DEAL_P2: begin
-            load_pcard2 = 1;
+            load_dcard2 = 1;
             next_state = S4_DEAL_D2;
         end
         S4_DEAL_D2: begin
-            load_dcard2 = 1;
+            load_pcard3 = 1;
             next_state = S5_DEAL_P3;
         end
         S5_DEAL_P3: begin
-            load_pcard3 = 1;
+            load_dcard3 = 1;
             next_state = S6_DEAL_D3;
         end
         S6_DEAL_D3: begin
-            load_dcard3 = 1;
             next_state = S7_COMPARE;
         end
         S7_COMPARE: begin
-            if (pscore > dscore)
+            if (pscore > dscore) 
                 player_win_light = 1;
+        
             else if (dscore > pscore)
                 dealer_win_light = 1;
-            else
+            else begin
                 //both lights on for tie
                 player_win_light = 1;
                 dealer_win_light = 1;
+            end
             next_state = S0_IDLE;
         end
         default: begin
