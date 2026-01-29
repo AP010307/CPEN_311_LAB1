@@ -12,6 +12,45 @@ module datapath(input logic slow_clock, input logic fast_clock, input logic rese
 // or included as sequential always blocks directly in this file.
 //
 // Follow the block diagram in the Lab 1 handout closely as you write this code.
+logic [3:0] PCard1, PCard2, PCard3, DCard1, DCard2, DCard3;
+
+logic [3:0] new_card;
+
+
+// Instantiate dealcard block
+dealcard dc (.clock(fast_clock), .resetb(resetb), .new_card(new_card));
+// Instantiate scorehand blocks
+scorehand pscore (.card1(PCard1), .card2(PCard2), .card3(PCard3), .total(pscore_out));
+scorehand dscore (.card1(DCard1), .card2(DCard2), .card3(DCard3), .total(dscore_out));
+// Instantiate card7seg blocks
+card7seg segPCard1 (.card(PCard1), .seg7(HEX0));
+card7seg segPCard2 (.card(PCard2), .seg7(HEX1));
+card7seg segPCard3 (.card(PCard3), .seg7(HEX2));
+card7seg segDCard1 (.card(DCard1), .seg7(HEX3));
+card7seg segDCard2 (.card(DCard2), .seg7(HEX4));
+card7seg segDCard3 (.card(DCard3), .seg7(HEX5));
+
+// Output the third player card
+assign pcard3_out = PCard3;
+
+
+// Sequential logic to load player and dealer cards
+always_ff @(posedge slow_clock) 
+  if (resetb==0)
+    begin
+      PCard1 <= 4'b0; PCard2 <= 4'b0; PCard3 <= 4'b0;
+      DCard1 <= 4'b0; DCard2 <= 4'b0; DCard3 <= 4'b0;
+    end
+  else 
+    begin
+      if (load_pcard1) PCard1 <= new_card;
+      if (load_pcard2) PCard2 <= new_card;
+      if (load_pcard3) PCard3 <= new_card;
+      if (load_dcard1) DCard1 <= new_card;
+      if (load_dcard2) DCard2 <= new_card;  
+      if (load_dcard3) DCard3 <= new_card;
+    end
+  
 
 endmodule
 
