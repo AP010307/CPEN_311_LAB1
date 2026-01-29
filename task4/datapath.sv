@@ -35,22 +35,27 @@ assign pcard3_out = PCard3;
 
 
 // Sequential logic to load player and dealer cards
-always_ff @(posedge slow_clock) 
-  if (resetb==0)
-    begin
-      PCard1 <= 4'b0; PCard2 <= 4'b0; PCard3 <= 4'b0;
-      DCard1 <= 4'b0; DCard2 <= 4'b0; DCard3 <= 4'b0;
-    end
-  else 
-    begin
-      if (load_pcard1) PCard1 <= new_card;
-      if (load_pcard2) PCard2 <= new_card;
-      if (load_pcard3) PCard3 <= new_card;
-      if (load_dcard1) DCard1 <= new_card;
-      if (load_dcard2) DCard2 <= new_card;  
-      if (load_dcard3) DCard3 <= new_card;
-    end
-  
+always_ff @(posedge slow_clock) begin
+  if (!resetb) begin
+    PCard1 <= 0; PCard2 <= 0; PCard3 <= 0;
+    DCard1 <= 0; DCard2 <= 0; DCard3 <= 0;
+  end
+  else if (load_pcard1) begin
+    // Start of a new game: clear everything, then deal P1
+    PCard1 <= new_card;
+    PCard2 <= 0; PCard3 <= 0;
+    DCard1 <= 0; DCard2 <= 0; DCard3 <= 0;
+  end
+  else begin
+    if (load_pcard2) PCard2 <= new_card;
+    if (load_pcard3) PCard3 <= new_card;
+    if (load_dcard1) DCard1 <= new_card;
+    if (load_dcard2) DCard2 <= new_card;
+    if (load_dcard3) DCard3 <= new_card;
+  end
+end
+
+
 
 endmodule
 

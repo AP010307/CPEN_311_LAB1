@@ -1,5 +1,6 @@
 module statemachine(input logic slow_clock, input logic resetb,
                     input logic [3:0] dscore, input logic [3:0] pscore, input logic [3:0] pcard3,
+                    
                     output logic load_pcard1, output logic load_pcard2, output logic load_pcard3,
                     output logic load_dcard1, output logic load_dcard2, output logic load_dcard3,
                     output logic player_win_light, output logic dealer_win_light);
@@ -48,7 +49,7 @@ typedef enum logic [3:0] {
   S5_DEAL_P3,
   S6_EVAL_D3,
   S7_DEAL_D3,
-  S8_COMPARE   
+  S8_COMPARE
 } state_t;
 
 
@@ -134,9 +135,9 @@ always_comb begin
         player_win_light = 1;
         dealer_win_light = 1;
       end
-      next_state = S8_COMPARE; // stay until reset
+      next_state = S0_DEAL_P1;
     end
-
+    
     default: next_state = S0_DEAL_P1;
   endcase
 end
