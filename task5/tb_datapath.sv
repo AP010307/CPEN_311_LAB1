@@ -85,6 +85,25 @@ module tb_datapath();
   endtask
 
   initial begin
+    // Verify Reset
+    do_reset();
+
+    #10
+    
+    // Ensure all 7segs are reset
+    foreach (HEX[i]) begin
+        assert(HEX[i] == 7'b1111111)
+        else $fatal("ASSERT FAIL: HEX%0d did not reset", i);
+    end
+
+    assert(pcard3 == 4'd0)
+    else $fatal("ASSERT FAIL: pcard3 did not reset");
+
+    assert(pscore == 4'd0)
+    else $fatal("ASSERT FAIL: pscore did not reset");
+
+    assert(dscore == 4'd0)
+    else $fatal("ASSERT FAIL: dscore did not reset");
     // Test Loading
     do_reset();
     test_load(load_pcard1, "load_pcard1", 0, HEX);
@@ -98,6 +117,8 @@ module tb_datapath();
     test_load(load_dcard2, "load_dcard2", 4, HEX);
     do_reset();
     test_load(load_dcard3, "load_dcard3", 5, HEX);
+
+
 
     $display("ALL TESTS PASSED :)");
   end
