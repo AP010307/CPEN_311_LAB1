@@ -2,46 +2,49 @@
 
 module tb_card7seg;
 
-  logic [3:0] card;
-  logic [6:0] seg7;
+  reg  [3:0] SW;
+  wire [6:0] HEX0;
 
-  // DUT
+  // DUT matches your module ports: (SW, HEX0)
   card7seg dut (
-    .card(card),
-    .seg7(seg7)
+    .SW(SW),
+    .HEX0(HEX0)
   );
 
-  // task to apply input and wait
-  task check(input [3:0] c);
+  // Lab-style task: apply input, wait, print
+  task automatic apply_and_show(input [3:0] val, input string name);
     begin
-      card = c;
-      #1;
-      $display("card=%0d seg7=%b", card, seg7);
+      SW = val;
+      #10; // IMPORTANT: advance time so waveform shows it
+      $display("SW=%b (%0d) %-6s -> HEX0=%b", SW, SW, name, HEX0);
     end
   endtask
 
   initial begin
-    $display("=== card7seg test ===");
+    // start defined
+    SW = 4'b0000;
+    #1;
 
-    check(4'd0);   // blank
-    check(4'd1);   // A
-    check(4'd2);
-    check(4'd3);
-    check(4'd4);
-    check(4'd5);
-    check(4'd6);
-    check(4'd7);
-    check(4'd8);
-    check(4'd9);
-    check(4'd10);  // 0
-    check(4'd11);  // J
-    check(4'd12);  // Q
-    check(4'd13);  // K
-    check(4'd14);  // blank
-    check(4'd15);  // blank
+    // Step through all values so you see waveform change
+    apply_and_show(4'd0,  "BLANK");
+    apply_and_show(4'd1,  "A");
+    apply_and_show(4'd2,  "2");
+    apply_and_show(4'd3,  "3");
+    apply_and_show(4'd4,  "4");
+    apply_and_show(4'd5,  "5");
+    apply_and_show(4'd6,  "6");
+    apply_and_show(4'd7,  "7");
+    apply_and_show(4'd8,  "8");
+    apply_and_show(4'd9,  "9");
+    apply_and_show(4'd10, "10->0");
+    apply_and_show(4'd11, "J");
+    apply_and_show(4'd12, "Q");
+    apply_and_show(4'd13, "K");
+    apply_and_show(4'd14, "INV");
+    apply_and_show(4'd15, "INV");
 
-    $display("=== card7seg test DONE ===");
-    $finish;
+    #50; // hold last value so you can inspect
+    $stop;
   end
 
 endmodule
