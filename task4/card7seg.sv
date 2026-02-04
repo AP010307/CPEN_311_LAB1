@@ -32,7 +32,7 @@ module card7seg(input logic [3:0] card, output logic [6:0] seg7);
             4'b0111:  seg = SEVEN;
             4'b1000:  seg = EIGHT;
             4'b1001:  seg = NINE;
-            4'b1010:  seg = TEN;    // if your spec wants 10 -> 0
+            4'b1010:  seg = TEN;    
             4'b1011:  seg = JACK;
             4'b1100:  seg = QUEEN;
             4'b1101:  seg = KING;
