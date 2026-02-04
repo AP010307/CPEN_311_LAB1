@@ -43,6 +43,7 @@ module tb_scorehand();
     else $fatal("ASSERT FAIL: score_out = %1t != 1 at time %0t", $time, $score_out);
 
     $display("All Tests Passed");
+    $finish;
   end
   
 endmodule

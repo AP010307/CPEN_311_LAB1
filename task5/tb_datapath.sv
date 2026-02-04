@@ -121,5 +121,6 @@ module tb_datapath();
 
 
     $display("ALL TESTS PASSED :)");
+    $finish;
   end
 endmodule
