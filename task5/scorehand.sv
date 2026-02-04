@@ -18,12 +18,7 @@ always_comb begin
     logic [5:0] sum;
 
     sum = card_value(card1) + card_value(card2) + card_value(card3);
-    if (sum >= 6'd20)
-        total = sum - 6'd20;
-    else if (sum>=6'd10)
-        total = sum - 6'd10;
-    else
-        total = sum;
+    total = sum % 10;
 
 end
 

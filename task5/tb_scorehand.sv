@@ -21,26 +21,27 @@ module tb_scorehand();
     Card2 = 4'd1;
     Card3 = 4'd1;
     
+    #1;
     assert (score_out == 4'd3)
-    else $fatal("ASSERT FAIL: score_out != 4 at time %0t", $time);
+    else $fatal(1, "ASSERT FAIL: expected 3, got %0d at time %0t", score_out, $time);
 
     #10
     // Test Sum > 10
     Card1 = 4'd4;
     Card2 = 4'd5;
     Card3 = 4'd6;
-
+    #1;
     assert(score_out == 4'd5)
-    else $fatal("ASSERT FAIL: score_out != 5 at time %0t", $time);
-
+    else $fatal(1, "ASSERT FAIL: expected 5, got %0d at time %0t", score_out, $time);
     #10
     // Test Sum of Cards Including Those Equal to Zero
     Card1 = 4'd11; // Jack (Score of Zero)
     Card2 = 4'd5;  // Normal Card
     Card3 = 4'd6;  // Normal Card
 
+    #1;
     assert(score_out == 4'd1)
-    else $fatal("ASSERT FAIL: score_out = %1t != 1 at time %0t", $time, $score_out);
+    else $fatal(1, "ASSERT FAIL: expected 1, got %0d at time %0t", score_out, $time);
 
     $display("All Tests Passed");
     $finish;
